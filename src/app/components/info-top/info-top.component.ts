@@ -115,7 +115,7 @@ export class InfoTopComponent implements OnInit {
 
     // battery text
     g.append('text')
-      .text('46%')
+      .text('99%')
       .attr('font-size', '14')
       .attr('text-anchor', 'middle')
       .attr('fill', '#FFFFFF')
@@ -141,7 +141,7 @@ export class InfoTopComponent implements OnInit {
 
     // temperature text
     g.append('text')
-      .html('-12 &deg;C')
+      .html('23 &deg;C')
       .attr('font-size', '14')
       .attr('text-anchor', 'middle')
       .attr('fill', '#FFFFFF')

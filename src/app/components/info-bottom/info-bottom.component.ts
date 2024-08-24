@@ -87,7 +87,7 @@ export class InfoBottomComponent implements OnInit {
 
     // Song text
     g.append('text')
-      .text('Wu-Tang Clan - Triumph')
+      .text('Chelele - Classics')
       .attr('x', '285px')
       .attr('y', '97px')
       .attr('font-size', '12')

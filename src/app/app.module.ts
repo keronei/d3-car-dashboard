@@ -7,6 +7,10 @@ import { InfoMapComponent } from './components/info-map/info-map.component';
 import { InfoTopComponent } from './components/info-top/info-top.component';
 import { RpmGaugeComponent } from './components/rpm-gauge/rpm-gauge.component';
 import { SpeedGaugeComponent } from './components/speed-gauge/speed-gauge.component';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+
+const config: SocketIoConfig = ({url: "ws://localhost:8090", options: {transports : ['websocket']}});
+
 
 @NgModule({
   declarations: [
@@ -18,7 +22,7 @@ import { SpeedGaugeComponent } from './components/speed-gauge/speed-gauge.compon
     RpmGaugeComponent,
     SpeedGaugeComponent
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, SocketIoModule.forRoot(config)],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

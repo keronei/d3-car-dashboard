@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { filter, fromEvent, interval, Subscription, tap, timeInterval } from 'rxjs';
 import { DEFAULT_REFRESH_RATE } from '../../shared/const';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +9,10 @@ import { DEFAULT_REFRESH_RATE } from '../../shared/const';
     <div class="dashboard">
       <div class="dashboard-body">
         <div class="container">
-          <app-info-top></app-info-top>
-          <img src="/assets/images/map.png" class="map" />
-          <app-info-map></app-info-map>
-          <app-info-bottom></app-info-bottom>
+          <!-- <app-info-top></app-info-top>
+          <img src="/assets/images/map.png" class="map" /> -->
+          <!-- <app-info-map></app-info-map>
+          <app-info-bottom></app-info-bottom> -->
           <app-rpm-gauge [value]="rpm"></app-rpm-gauge>
           <app-speed-gauge [value]="speed"></app-speed-gauge>
         </div>
@@ -22,12 +23,19 @@ import { DEFAULT_REFRESH_RATE } from '../../shared/const';
 export class DashboardComponent implements OnInit, OnDestroy {
   sub = new Subscription();
   acc = false;
-  rpm = 0;
-  speed = 0;
+  rpm = 1700;
+  speed = 112;
 
-  constructor() { }
+  constructor(private socketService: SocketService) { }
 
   ngOnInit(): void {
+
+    this.socketService.getGpioData().subscribe((receivedMessage: any) => {
+      console.log("Message:" + receivedMessage.rpm);
+      this.rpm = receivedMessage.rpm;
+      this.speed = receivedMessage.speed
+    });
+
     const keyDown$ = fromEvent<KeyboardEvent>(document, 'keydown')
       .pipe(
         filter((e: KeyboardEvent) => e.key === 'ArrowUp'),
@@ -40,23 +48,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
         tap(() => this.acc = false)
       );
 
-    const interval$ = interval(DEFAULT_REFRESH_RATE)
-      .pipe(
-        timeInterval(),
-        tap(() => {
-          if (this.acc) {
-            this.speed = this.speed < 300 ? this.speed += 1 : this.speed;
-            this.rpm = this.rpm < 6000 ? this.rpm += 50 : this.rpm;
-          } else {
-            this.speed = this.speed > 0 ? this.speed -= 1 : this.speed;
-            this.rpm = this.rpm > 0 ? this.rpm -= 50 : this.rpm;
-          }
-        })
-      );
+    // const interval$ = interval(DEFAULT_REFRESH_RATE)
+    //   .pipe(
+    //     timeInterval(),
+    //     tap(() => {
+
+    //       if (this.acc) {
+    //         this.speed = this.speed < 200 ? this.speed += 1 : this.speed;
+    //         this.rpm = this.rpm < 6000 ? this.rpm += 50 : this.rpm;
+
+    //         if(this.speed == 200){
+    //           this.acc = false
+    //         }
+
+    //       } else {
+    //         this.speed = this.speed > 20 ? this.speed -= 1 : this.speed;
+    //         this.rpm = this.rpm > 700 ? this.rpm -= 30 : this.rpm;
+
+    //         if (this.rpm < 700){
+    //           this.acc = true;
+    //         }
+    //       }
+    //     })
+    //   );
 
     this.sub.add(keyDown$.subscribe());
     this.sub.add(keyUp$.subscribe());
-    this.sub.add(interval$.subscribe());
+    // this.sub.add(interval$.subscribe());
   }
 
   ngOnDestroy(): void {

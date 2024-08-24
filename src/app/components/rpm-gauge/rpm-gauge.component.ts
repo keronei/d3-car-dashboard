@@ -167,7 +167,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
     // big text in center
     tg.append('text')
       .text('D3')
-      .attr('font-size', '80')
+      .attr('font-size', '100')
       .attr('text-anchor', 'middle')
       .attr('fill', colors[2])
       .attr('x', '0')
@@ -213,10 +213,11 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
 
   private setValue(value: number, duration: number): void {
     const minAngle = -160;
-    const maxAngle = 90;
+    const maxAngle = 27.5;
     const angleRange = maxAngle - minAngle;
     const angle = minAngle + scale(value, 6000) * angleRange;
-
+    console.log("Angle: "+ angle);
+    
     transition()
       .select(() => this.needle.node())
       .duration(duration)

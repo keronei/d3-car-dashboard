@@ -45,12 +45,7 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
       { value: 140, visible: false, color: '#FFFFFF' },
       { value: 160, visible: false, color: '#FFFFFF' },
       { value: 180, visible: false, color: '#FFFFFF' },
-      { value: 200, visible: false, color: '#FFFFFF' },
-      { value: 220, visible: false, color: '#FFFFFF' },
-      { value: 240, visible: false, color: '#FFFFFF' },
-      { value: 260, visible: false, color: '#FFFFFF' },
-      { value: 280, visible: false, color: '#FFFFFF' },
-      { value: 300, visible: false, color: '#FFFFFF' }
+      { value: 200, visible: false, color: '#FFFFFF' }
     ];
     const r = 200; // width / 2
 
@@ -97,7 +92,7 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
           return acc.concat(range(curr.value - 10, curr.value + 10));
         }
       }, [] as number[])
-      .filter((d: number) => d % 5 === 0 && d <= 300);
+      .filter((d: number) => d % 5 === 0 && d <= 200);
 
     lg.selectAll('line')
       .data(ticks)
@@ -109,7 +104,7 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
       .attr('x2', 0)
       .attr('y2', (d: number) => (d % 20 === 0 || d === 0 ? '12' : '7'))
       .attr('transform', (d: number) => {
-        const ratio = scale(d, 300);
+        const ratio = scale(d, 200);
         const newAngle = minAngle + ratio * angleRange;
         const deviation = d % 20 === 0 || d === 0 ? 12 : 17;
         return `rotate(${newAngle}) translate(0, ${deviation - r})`;
@@ -123,7 +118,7 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
       .enter()
       .append('text')
       .attr('transform', (d: { value: number; color: string }) => {
-        const ratio = scale(d.value, 300);
+        const ratio = scale(d.value, 200);
         const newAngle = degToRad(minAngle + ratio * angleRange);
         const deviation = d.value === 30 || d.value === 50 ? 45 : 50;
         const y = (deviation - r) * Math.cos(newAngle);
@@ -203,7 +198,7 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
     const minAngle = -160;
     const maxAngle = 150;
     const angleRange = maxAngle - minAngle;
-    const angle = minAngle + scale(value, 300) * angleRange;
+    const angle = minAngle + scale(value, 200) * angleRange;
 
     this.speedText.text(value);
 
