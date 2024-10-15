@@ -1,0 +1,11 @@
+<div ng-app="yourApp" ng-controller="TempController">
+    <!-- Background Markers -->
+    <div ng-repeat="marker in backgroundMarkers">
+        <temp-marker num="{{marker.num}}" background="{{marker.background}}"></temp-marker>
+    </div>
+
+    <!-- Temperature Markers -->
+    <div ng-repeat="marker in markers">
+        <temp-marker num="{{marker.num}}" background="{{marker.background}}"></temp-marker>
+    </div>
+</div>

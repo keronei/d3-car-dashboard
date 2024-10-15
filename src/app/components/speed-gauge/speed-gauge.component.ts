@@ -35,17 +35,17 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
     const ticksData = [
       { value: 0, visible: false, color: '#FFFFFF' },
       { value: 20, visible: false, color: '#FFFFFF' },
-      { value: 30, visible: false, color: '#FD3104' },
+      { value: 30, visible: false, color: '#FFFFFF' },
       { value: 40, visible: false, color: '#FFFFFF' },
-      { value: 50, visible: false, color: '#FD3104' },
+      { value: 50, visible: false, color: '#FFFFFF' },
       { value: 60, visible: false, color: '#FFFFFF' },
       { value: 80, visible: false, color: '#FFFFFF' },
       { value: 100, visible: false, color: '#FFFFFF' },
       { value: 120, visible: false, color: '#FFFFFF' },
-      { value: 140, visible: false, color: '#FFFFFF' },
-      { value: 160, visible: false, color: '#FFFFFF' },
-      { value: 180, visible: false, color: '#FFFFFF' },
-      { value: 200, visible: false, color: '#FFFFFF' }
+      { value: 140, visible: false, color: '#FD3104' },
+      { value: 160, visible: false, color: '#FD3104' },
+      { value: 180, visible: false, color: '#FD3104' },
+      // { value: 200, visible: false, color: '#FFFFFF' }
     ];
     const r = 200; // width / 2
 
@@ -92,7 +92,7 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
           return acc.concat(range(curr.value - 10, curr.value + 10));
         }
       }, [] as number[])
-      .filter((d: number) => d % 5 === 0 && d <= 200);
+      .filter((d: number) => d % 5 === 0 && d <= 180);
 
     lg.selectAll('line')
       .data(ticks)
@@ -104,12 +104,12 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
       .attr('x2', 0)
       .attr('y2', (d: number) => (d % 20 === 0 || d === 0 ? '12' : '7'))
       .attr('transform', (d: number) => {
-        const ratio = scale(d, 200);
+        const ratio = scale(d, 180);
         const newAngle = minAngle + ratio * angleRange;
         const deviation = d % 20 === 0 || d === 0 ? 12 : 17;
         return `rotate(${newAngle}) translate(0, ${deviation - r})`;
       })
-      .style('stroke', (d: number) => (d === 30 || d === 50 ? colors[3] : colors[2]))
+      .style('stroke', (d: number) =>  colors[2])
       .style('stroke-width', (d: number) => (d % 5 === 0 || d === 0 ? '3' : '1'));
 
     // ticks text
@@ -118,7 +118,7 @@ export class SpeedGaugeComponent implements OnInit, OnChanges {
       .enter()
       .append('text')
       .attr('transform', (d: { value: number; color: string }) => {
-        const ratio = scale(d.value, 200);
+        const ratio = scale(d.value, 180);
         const newAngle = degToRad(minAngle + ratio * angleRange);
         const deviation = d.value === 30 || d.value === 50 ? 45 : 50;
         const y = (deviation - r) * Math.cos(newAngle);

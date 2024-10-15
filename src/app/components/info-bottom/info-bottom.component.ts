@@ -1,12 +1,20 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { select } from 'd3';
 
 @Component({
   selector: 'app-info-bottom',
   template: `<div class="info-bottom"></div>`
 })
-export class InfoBottomComponent implements OnInit {
+export class InfoBottomComponent implements OnInit, OnChanges {
+
+  @Input() fuelLitres: number = 0;
+  @Input() fuelDistance: number = 0;
+  @Input() trip: number = 0;
+  
   constructor(private readonly elementRef: ElementRef) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+  }
 
   ngOnInit(): void {
     this.generate();
@@ -19,7 +27,7 @@ export class InfoBottomComponent implements OnInit {
 
     // trip km text
     g.append('text')
-      .text('Trip: 478.0km')
+      .text(`Trip: ${this.trip.toFixed(1)} km`)
       .attr('x', '90px')
       .attr('y', '40px')
       .attr('font-size', '18')
@@ -34,15 +42,6 @@ export class InfoBottomComponent implements OnInit {
       .attr('width', '25px')
       .attr('height', '25px');
 
-    // hour
-    g.append('text')
-      .text('10:16am')
-      .attr('x', '230px')
-      .attr('y', '40px')
-      .attr('font-size', '18')
-      .attr('text-anchor', 'middle')
-      .attr('fill', '#FFFFFF');
-
     // red line
     g.append('image')
       .attr('xlink:href', '/assets/images/red-line.svg')
@@ -53,7 +52,7 @@ export class InfoBottomComponent implements OnInit {
 
     // mileage
     g.append('text')
-      .text('21341km')
+      .text('0 km')
       .attr('x', '370px')
       .attr('y', '40px')
       .attr('font-size', '18')
@@ -70,7 +69,7 @@ export class InfoBottomComponent implements OnInit {
 
     // iPhone text
     g.append('text')
-      .text('iPhone')
+      .text(`${this.fuelDistance.toFixed(1)} Km `)
       .attr('x', '120px')
       .attr('y', '100px')
       .attr('font-size', '16')
@@ -79,7 +78,7 @@ export class InfoBottomComponent implements OnInit {
 
     // musical note
     g.append('image')
-      .attr('xlink:href', '/assets/images/musical-note.svg')
+      .attr('xlink:href', '/assets/images/gasoline-pump.svg')
       .attr('x', '170px')
       .attr('y', '80px')
       .attr('width', '25px')
@@ -87,10 +86,10 @@ export class InfoBottomComponent implements OnInit {
 
     // Song text
     g.append('text')
-      .text('Chelele - Classics')
+      .text(`${this.fuelLitres.toFixed(1)} L`)
       .attr('x', '285px')
       .attr('y', '97px')
-      .attr('font-size', '12')
+      .attr('font-size', '16')
       .attr('text-anchor', 'middle')
       .attr('fill', '#FFFFFF');
   }

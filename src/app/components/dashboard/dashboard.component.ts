@@ -11,10 +11,13 @@ import { SocketService } from '../socket.service';
         <div class="container">
           <!-- <app-info-top></app-info-top>
           <img src="/assets/images/map.png" class="map" /> -->
-          <!-- <app-info-map></app-info-map>
-          <app-info-bottom></app-info-bottom> -->
-          <app-rpm-gauge [value]="rpm"></app-rpm-gauge>
-          <app-speed-gauge [value]="speed"></app-speed-gauge>
+          <!-- <app-info-map></app-info-map>-->
+          <app-info-bottom [fuelDistance]="fuelDistance" [fuelLitres]="fuelLitres" [trip]="trip"></app-info-bottom> 
+          <app-rpm-gauge [rpm]="rpm" [speed]="speed"></app-rpm-gauge>
+          <app-time-display [date] = "date" [time] = "time"></app-time-display>
+          <app-fuel-display [percentage] = "percentage" ></app-fuel-display>
+          <!-- <app-speed-gauge [value]="speed"></app-speed-gauge> -->
+           <!-- <app-mph-renderer [mph]="89"></app-mph-renderer> -->
         </div>
       </div>
     </div>
@@ -24,7 +27,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   sub = new Subscription();
   acc = false;
   rpm = 1700;
-  speed = 112;
+  speed = 4;
+  date = "Saturday, 12/10";
+  time = "0011";
+  percentage = 0;
+  fuelDistance = 0;
+  fuelLitres = 0;
+  trip = 0;
 
   constructor(private socketService: SocketService) { }
 
@@ -33,7 +42,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.socketService.getGpioData().subscribe((receivedMessage: any) => {
       console.log("Message:" + receivedMessage.rpm);
       this.rpm = receivedMessage.rpm;
-      this.speed = receivedMessage.speed
+      this.speed = receivedMessage.speed;
+      this.time = receivedMessage.time;
+      this.date = receivedMessage.day +", "+receivedMessage.date;
+      this.percentage = receivedMessage.percentage;
+      this.fuelDistance = receivedMessage.fuelDistance;
+      this.fuelLitres = receivedMessage.fuelLitres;
+      this.trip = receivedMessage.trip;
     });
 
     const keyDown$ = fromEvent<KeyboardEvent>(document, 'keydown')
@@ -48,29 +63,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         tap(() => this.acc = false)
       );
 
-    // const interval$ = interval(DEFAULT_REFRESH_RATE)
-    //   .pipe(
-    //     timeInterval(),
-    //     tap(() => {
-
-    //       if (this.acc) {
-    //         this.speed = this.speed < 200 ? this.speed += 1 : this.speed;
-    //         this.rpm = this.rpm < 6000 ? this.rpm += 50 : this.rpm;
-
-    //         if(this.speed == 200){
-    //           this.acc = false
-    //         }
-
-    //       } else {
-    //         this.speed = this.speed > 20 ? this.speed -= 1 : this.speed;
-    //         this.rpm = this.rpm > 700 ? this.rpm -= 30 : this.rpm;
-
-    //         if (this.rpm < 700){
-    //           this.acc = true;
-    //         }
-    //       }
-    //     })
-    //   );
 
     this.sub.add(keyDown$.subscribe());
     this.sub.add(keyUp$.subscribe());

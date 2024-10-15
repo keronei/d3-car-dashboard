@@ -1,0 +1,18 @@
+<div class="mph__container">
+    <!-- Background with default numbers -->
+    <div class="mph--background">
+      <span class="mph__number--default"></span>
+      <span class="mph__number--default"></span>
+      <span class="mph__number--default"></span>
+    </div>
+  
+    <!-- MPH display with dynamic classes and digits -->
+    <div class="mph">
+      <span [class]="getMPHData().hundredsClass">{{ getMPHData().hundredsDigit }}</span>
+      <span [class]="getMPHData().tensClass">{{ getMPHData().tensDigit }}</span>
+      <span [class]="getMPHData().onesClass">{{ getMPHData().onesDigit }}</span>
+    </div>
+  
+    <p class="mph__label">KPH</p>
+  </div>
+  

@@ -1,0 +1,253 @@
+@font-face {
+  font-family: 'big numbers';
+  src: url('../../../assets/fonts/bigNumbers/bigNumbers.eot');
+  src: url('../../../assets/fonts/bigNumbers/bigNumbers.eot?#iefix') format('embedded-opentype'),
+       url('../../../assets/fonts/bigNumbers/bigNumbers.woff') format('woff'),
+       url('../../../assets/fonts/bigNumbers/bigNumbers.ttf') format('truetype'),
+       url('../../../assets/fonts/bigNumbers/bigNumbers.svg#big-numbers') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'small numbers';
+  src: url('../../../assets/fonts/smallNumbers/smallNumbers.eot');
+  src: url('../../../assets/fonts/smallNumbers/smallNumbers.eot?#iefix') format('embedded-opentype'),
+       url('../../../assets/fonts/smallNumbers/smallNumbers.woff') format('woff'),
+       url('../../../assets/fonts/smallNumbers/smallNumbers.ttf') format('truetype'),
+       url('../../../assets/fonts/smallNumbers/smallNumbers.svg#big-numbers') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mph__number {
+    /* General styling for MPH numbers */
+    font-style: 'big numbers';
+  }
+  
+  [class*='big-']:after, .mph__number--default:before{
+    display: inline-block;
+     font-family: 'big numbers';
+     font-style: normal;
+     font-weight: normal;
+     line-height: 1;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     margin-left: -27px;
+  }
+  .mph__number--0:after{
+    content:'\0030';
+    position: relative;
+    left: -27px;
+  }
+  .mph__number--1:after{
+    content:'\0031';
+    font-size: 135px;
+    left: 6px;
+    position: relative;
+  }
+  .mph__number--2:after{
+    content:'\0032';
+    position: relative;
+    left: -27px;
+  }
+  .mph__number--3:after{
+    content:'\0033';
+    position: relative;
+    left: -25px;
+  }
+  .mph__number--4:after{
+    content:'\0034';
+    position: relative;
+    left: -23px;
+    /*top: 1px;*/
+    font-size: 137px;
+  }
+  .mph__number--5:after{
+    content:'\0035';
+    position: relative;
+    left: -27px;
+    font-size: 145px;
+  }
+  .mph__number--6:after{
+    content:'\0036';
+    position: relative;
+    left: -27px;
+    font-size: 145px;
+  }
+  .mph__number--7:after{
+    content: '\0037';
+    position: relative;
+    left: -24px;
+    font-size: 143px;
+    top: -1px;
+  }
+  .mph__number--8:after, .mph__number--default:before{
+    content:'\0038';
+  }
+  .mph__number--8:after{
+    position: relative;
+    left: -27px;
+    top: 0;
+    font-size: 145px;
+  }
+  .mph__number--9:after{
+    content:'\0039';
+    position: relative;
+    left: -27px;
+    top: 0;
+    font-size: 145px;
+  }
+
+  .small-num__container{
+    display: inline-block;
+    min-width: 175px;
+    margin-left: -40px;
+  }
+  .small-number, .small-number--default{
+    color: #fff;
+    display: inline-block;
+    width: 29px;
+    height: 50px;
+    text-align: right;
+    padding-right: 10px;
+  }
+  .small-number--default{
+    color: #292630;
+  }
+  .small-number--default:first-child{
+    padding-right: 19px;
+  }
+  .small-number:last-child, .small-number--default:last-child{
+    padding-right: 0;
+  }
+  .rpm{
+    position: absolute;
+  }
+  .small-number:first-child{
+    padding-right: 5px;
+  }
+  .small-number--comma{
+    padding-right: 5px;
+  }
+  .small-number--hidden-comma{
+    padding-right: 5px;
+    opacity: 0;
+  }
+  .comma-image{
+    width: 9px;
+    transform: translateY(10px);
+  }
+  .small-number, .small-number--default, [class*=" rpm__"] {
+      /* use !important to prevent issues with browser extensions that change fonts */
+      font-family: 'small numbers' !important;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      font-size: 48px;
+  
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .small-number__label{
+    font-family: "Brandon Grotesque";
+    font-weight: bold;
+    color: #423E4A;
+    text-align: center;
+    margin-top: 3px;
+    font-size: 20px;
+  }
+  
+  .small-number--0:before {
+      content: "\e900";
+  }
+  .small-number--1:before {
+      content: "\e901";
+  }
+  .small-number--2:before {
+      content: "\e902";
+  }
+  .small-number--3:before {
+      content: "\e903";
+  }
+  .small-number--4:before {
+      content: "\e904";
+  }
+  .small-number--5:before {
+      content: "\e905";
+  }
+  .small-number--6:before {
+      content: "\e906";
+  }
+  .small-number--7:before {
+      content: "\e907";
+  }
+  .small-number--8:before, .small-number--default:before {
+      content: "\e908";
+  }
+  .small-number--9:before {
+      content: "\e909";
+  }
+  .rpm-num__container{
+    background: #423E4A;
+    padding: 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .mph, .mph--background{
+    font-family: "big numbers";
+    color: #ffffff;
+    font-size: 145px;
+    line-height: 145px;
+    margin: 0;
+    text-align: center;
+    letter-spacing: -48px;
+    position: absolute;
+  }
+  .mph__label{
+    text-align: center;
+    font-size: 30px;
+    font-family: "Brandon Grotesque";
+    font-weight: bold;
+    color: #423E4A;
+    top: 135px;
+    position: relative;
+  }
+  .mph__container{
+    width: 278px;
+    height: 145px;
+    margin: 150px auto 0;
+    /*overflow: hidden;*/
+  }
+  .mph__number--default{
+    margin-right: 25px;
+    color: #423E4A;
+    width: 76px;
+  }
+  .mph__number--default:last-child{
+    margin-right: 0;
+  }
+  .mph__number{
+    position: absolute;
+    width: 76px;
+  }
+  .mph__number:nth-child(2n){
+    left: 94px;
+  }
+  .mph__number:nth-child(3n){
+    left: 190px;
+  }
+  
+  
+  
+  
+  .mph__label {
+    /* Styling for the MPH label */
+
+  }
+  

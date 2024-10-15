@@ -8,7 +8,8 @@ import { degToRad, scale } from '../../shared/helpers';
   template: `<div class="rpm-gauge"></div>`
 })
 export class RpmGaugeComponent implements OnInit, OnChanges {
-  @Input() value: number = 0;
+  @Input() rpm: number = 0;
+  @Input() speed: number = 0;
 
   private needle!: Selection<SVGPathElement, number[][], null, undefined>;
 
@@ -23,7 +24,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
       return;
     }
 
-    this.setValue(this.value, DEFAULT_REFRESH_RATE);
+    this.setValue(this.rpm, DEFAULT_REFRESH_RATE);
   }
 
   private generate(): void {
@@ -166,7 +167,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
 
     // big text in center
     tg.append('text')
-      .text('D3')
+      .text(`${this.speed}`)
       .attr('font-size', '100')
       .attr('text-anchor', 'middle')
       .attr('fill', colors[2])
