@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   sub = new Subscription();
   acc = false;
   rpm = 1700;
-  speed = 4;
+  speed = 0;
   date = "Saturday, 12/10";
   time = "0011";
   percentage = 0;
