@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.speed = receivedMessage.speed;
       this.time = receivedMessage.time;
       this.date = receivedMessage.day +", "+receivedMessage.date;
-      this.percentage = receivedMessage.percentage;
+      this.percentage = receivedMessage.fuelPercentage;
       this.fuelDistance = receivedMessage.fuelDistance;
       this.fuelLitres = receivedMessage.fuelLitres;
       this.trip = receivedMessage.trip;
