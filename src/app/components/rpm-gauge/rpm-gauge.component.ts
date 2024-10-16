@@ -30,7 +30,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
   private generate(): void {
     const el = this.elementRef.nativeElement.querySelector('.rpm-gauge');
     const svg = select(el).append('svg').attr('width', '100%').attr('height', '100%');
-    const g = svg.append('g').attr('transform', `translate(200, 200)`);
+    const g = svg.append('g').attr('transform', `translate(300, 300)`);
     const colors = ['#D1D1D1', '#AFAFAF', '#FFFFFF', '#FD3104', '#171717', '#0A0A0A'];
     const ticksData = [
       { value: 0 },
@@ -43,7 +43,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
       { value: 70 },
       { value: 80 }
     ];
-    const r = 200; // width / 2
+    const r = 300; // width / 2
 
     // gradients
     const defs = svg.append('defs');
@@ -72,7 +72,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
       .attr('d', circle as any)
       .attr('fill', 'url(#gradient1)')
       .attr('stroke', colors[1])
-      .attr('stroke-width', '7');
+      .attr('stroke-width', '8');
 
     // ticks
     const lg = svg.append('g').attr('class', 'label').attr('transform', `translate(${r}, ${r})`);
@@ -149,7 +149,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
     // inner circle
     const tg = svg.append('g').attr('transform', `translate(${r}, ${r})`);
 
-    const innerArcOuterRadius = r - 80;
+    const innerArcOuterRadius = r - 100;
     const innerArcInnerRadius = 0;
 
     const innerArc = arc()
@@ -161,7 +161,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
     tg.append('path')
       .attr('d', innerArc as any)
       .attr('stroke', colors[0])
-      .attr('stroke-width', '2')
+      .attr('stroke-width', '4')
       .attr('fill', 'url(#gradient1)')
       .attr('z-index', '10');
 

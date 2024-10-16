@@ -12,7 +12,7 @@ import { SocketService } from '../socket.service';
           <!-- <app-info-top></app-info-top>
           <img src="/assets/images/map.png" class="map" /> -->
           <!-- <app-info-map></app-info-map>-->
-          <app-info-bottom [fuelDistance]="fuelDistance" [fuelLitres]="fuelLitres" [trip]="trip"></app-info-bottom> 
+          <app-info-bottom [fuelDistance]="fuelDistance" [fuelLitres]="fuelLitres" [trip]="trip" [rpm]="rpm"></app-info-bottom> 
           <app-rpm-gauge [rpm]="rpm" [speed]="speed"></app-rpm-gauge>
           <app-time-display [date] = "date" [time] = "time"></app-time-display>
           <app-fuel-display [percentage] = "percentage" ></app-fuel-display>
@@ -26,7 +26,7 @@ import { SocketService } from '../socket.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   sub = new Subscription();
   acc = false;
-  rpm = 1700;
+  rpm = 2000;
   speed = 0;
   date = "Saturday, 12/10";
   time = "0011";

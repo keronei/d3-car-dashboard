@@ -10,6 +10,7 @@ export class InfoBottomComponent implements OnInit, OnChanges {
   @Input() fuelLitres: number = 0;
   @Input() fuelDistance: number = 0;
   @Input() trip: number = 0;
+  @Input() rpm: number = 0
   
   constructor(private readonly elementRef: ElementRef) { }
 
@@ -52,7 +53,7 @@ export class InfoBottomComponent implements OnInit, OnChanges {
 
     // mileage
     g.append('text')
-      .text('0 km')
+      .text(`${this.rpm}`)
       .attr('x', '370px')
       .attr('y', '40px')
       .attr('font-size', '18')
