@@ -139,7 +139,7 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
       .data([lineData])
       .attr('class', 'pointer')
       .attr('stroke', colors[3])
-      .attr('stroke-width', '6')
+      .attr('stroke-width', '8')
       .attr('stroke-linecap', 'round')
       .attr('transform', `translate(${r}, ${r})`)
       .attr('z-index', '1');
