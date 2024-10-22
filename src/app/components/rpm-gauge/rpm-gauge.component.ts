@@ -168,11 +168,11 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
     // big text in center
     tg.append('text')
       .text(`${this.speed}`)
-      .attr('font-size', '100')
+      .attr('font-size', '200')
       .attr('text-anchor', 'middle')
       .attr('fill', colors[2])
       .attr('x', '0')
-      .attr('y', '25px')
+      .attr('y', '45px')
       .style('position', 'absolute')
       .style('z-index', '10');
 
@@ -183,33 +183,33 @@ export class RpmGaugeComponent implements OnInit, OnChanges {
       .attr('text-anchor', 'middle')
       .attr('fill', colors[2])
       .attr('x', '0')
-      .attr('y', '85px')
+      .attr('y', '135px')
       .style('position', 'absolute')
       .style('z-index', '10');
 
     // lights icon
     tg.append('image')
       .attr('xlink:href', '/assets/images/lights.svg')
-      .attr('x', '10px')
-      .attr('y', '134px')
-      .attr('width', '35px')
-      .attr('height', '35px');
+      .attr('x', '1px')
+      .attr('y', '214px')
+      .attr('width', '55px')
+      .attr('height', '55px');
 
     // seat belt icon
     tg.append('image')
       .attr('xlink:href', '/assets/images/seat-belt.svg')
-      .attr('x', '56px')
-      .attr('y', '120px')
-      .attr('width', '30px')
-      .attr('height', '30px');
+      .attr('x', '96px')
+      .attr('y', '180px')
+      .attr('width', '50px')
+      .attr('height', '50px');
 
     // rear window defrost icon
     tg.append('image')
       .attr('xlink:href', '/assets/images/rear-window-defrost.svg')
-      .attr('x', '95px')
-      .attr('y', '95px')
-      .attr('width', '30px')
-      .attr('height', '30px');
+      .attr('x', '185px')
+      .attr('y', '110px')
+      .attr('width', '50px')
+      .attr('height', '50px');
   }
 
   private setValue(value: number, duration: number): void {
